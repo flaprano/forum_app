@@ -19,6 +19,11 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop', '~> 0.50.0', require: false
 end
 
 group :development do
@@ -26,4 +31,8 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
