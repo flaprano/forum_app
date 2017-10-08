@@ -1,4 +1,4 @@
-class Topic
+class Post
   include Mongoid::Document
   acts_as_nested_set dependent: :destroy
   validates :title, :message, presence: true

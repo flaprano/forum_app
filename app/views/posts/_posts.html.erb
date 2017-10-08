@@ -1,0 +1,11 @@
+<table>
+  <th class='table-header'>Posts</th>
+  <% @posts.each do |post| %>
+  <tr>
+    <td><%= link_to post.title, post_path(post) %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td class='table-footer'><%= paginate @posts %></td>
+  </tr>
+</table>

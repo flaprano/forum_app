@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :topic do
+  factory :post do
     title "MyString"
     message "MyText"
   end

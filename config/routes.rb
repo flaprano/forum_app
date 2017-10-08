@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'posts#index'
 
-  resources :topics, only: [:show, :create] do
-    post 'comments'
+  resources :posts, only: [:index, :show, :create] do
+    post 'comment'
+    post 'reply'
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'posts/:id/new_reply', to: 'posts#new_reply'
+  post 'posts/:id/reply', to: 'posts#reply'
 end

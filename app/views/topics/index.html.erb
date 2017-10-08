@@ -1,7 +1,0 @@
-<% @topics.each do |topic| %>
-  <div>
-    <span><%= link_to topic.title, topic_path(topic) %></span> <br/>
-  </div>
-<% end %>
-
-<%= paginate @topics %>

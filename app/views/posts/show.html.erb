@@ -1,0 +1,18 @@
+<h1><%= @post.title %></h1>
+<h2>Message</h2>
+<p><%= @post.message %></p>
+
+<%= form_for Post.new, url: post_comment_path(@post) do |f| %>
+  <%= f.label :message, 'Comment' %>:<br/>
+  <%= f.text_area :message, size: '100x10' %><br/><br/>
+
+  <%= f.submit 'Send Comment' %>
+<% end %>
+
+<hr />
+
+<h2>Comments</h2>
+
+<ul>
+<%= get_comments(@post.children) %>
+</ul>
