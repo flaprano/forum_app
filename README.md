@@ -1,3 +1,8 @@
+Project developed with:
+
+- Ruby 2.4.2
+- Rails 5.1.4
+
 # README
 
 This README would normally document whatever steps are necessary to get the

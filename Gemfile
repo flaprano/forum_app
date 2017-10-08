@@ -12,13 +12,16 @@ gem 'mongoid', '~> 6.1.0'
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari-mongoid'
+gem 'kaminari-actionview'
+gem 'glebtv-mongoid_nested_set'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug'
+  gem 'byebug-passenger'
   gem 'capybara'
   gem 'poltergeist'
   gem 'factory_girl_rails'

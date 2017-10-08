@@ -1,0 +1,10 @@
+<h1><%= @topic.title %></h1><br />
+<%= @topic.message %>
+<%= link_to 'Voltar', root_path %>
+<br />
+
+<h2>Comments</h2>
+<%= form_for Topic.new, url: topic_comments_path(@topic) do |f| %>
+  <%= f.text_area :message %>
+  <%= f.submit 'Send Comment' %>
+<% end %>
