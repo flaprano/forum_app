@@ -160,5 +160,4 @@ production:
   clients:
     default:
       database: felipe-app-forum
-      hosts:
-        - mongodb://root:root@ds115085.mlab.com:15085/felipe-forum-app
+      uri: <%= ENV['PROD_MONGODB'] %>
