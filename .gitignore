@@ -18,3 +18,7 @@
 
 .byebug_history
 coverage
+.DS_Store
+passenger.3000.pid
+passenger.3000.pid.lock
+.Gemfile.lock

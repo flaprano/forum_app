@@ -1,15 +1,48 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PostsHelper. For example:
-#
-# describe PostsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Get list of comments' do
+    it 'Returns a list of comments in html' do
+      comments = [
+        create(:post, title: 'Comment 1', message: 'Comment 1'),
+        create(:post, title: 'Comment 2', message: 'Comment 2')
+      ]
+      post_root = create(:post)
+      comments.each do |comment|
+        post_root.children << comment
+      end
+
+      list_html = get_comments(post_root.reload.children)
+
+      expect(list_html).to have_css('li', text: 'Comment 1')
+      expect(list_html).to have_css('li', text: 'Comment 2')
+    end
+
+    it 'Returns a list of comments in html with replys' do
+      comments = [
+        create(:post, title: 'Comment 1', message: 'Comment 1'),
+        create(:post, title: 'Comment 2', message: 'Comment 2')
+      ]
+
+      replys = [
+        create(:post, title: 'Reply 1', message: 'Reply 1'),
+        create(:post, title: 'Reply 2', message: 'Reply 2')
+      ]
+
+      post_root = create(:post)
+
+      comments.each do |comment|
+        post_root.children << comment
+      end
+
+      replys.each do |reply|
+        comments[0].children << reply
+      end
+
+      list_html = get_comments(post_root.reload.children)
+
+      expect(list_html).to have_css('li', text: 'Reply 1')
+      expect(list_html).to have_css('li', text: 'Reply 2')
+    end
+  end
 end
