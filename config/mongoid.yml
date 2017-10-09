@@ -3,14 +3,15 @@ development:
   clients:
     # Defines the default client. (required)
     default:
+      uri: mongodb://root:root@ds115085.mlab.com:15085/felipe-forum-app
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: forum_app_development
+      #database: forum_app_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      hosts:
-        - localhost:27017
-      options:
+      #hosts:
+      #  - localhost:27017
+      #options:
         # Change the default write concern. (default = { w: 1 })
         # write:
         #   w: 1
