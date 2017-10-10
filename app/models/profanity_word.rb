@@ -3,8 +3,9 @@ class ProfanityWord
   field :word, type: String
   field :regex, type: String
   
-  hash = [{a => '(a|@)+'}, {@ => '(a|@)+'}]
-  DICTIONARY = ['a','@', 'e','3','i','1','o','0','u','ü']
+  DICTIONARY = {'a' => '(a|@)+', '@' => '(a|@)+', 'e' => '(e|3)+', '3' => '(e|3)+',
+                'i' => '(i|1)+', '1' => '(i|1)+' , 'o' => '(o|0)+', '0' => '(o|0)+',
+                'u' => '(u|ü)+', 'ü' => '(u|ü)+'}
   
   def self.generate_regex(word)
     #regex = ''
@@ -12,28 +13,11 @@ class ProfanityWord
     if word.include?('a') || word.include?('@')
       word.gsub!('a', '(a|@)+')
     end
-    
-    ca
-    c(a|@)+
+  
     
     DICTIONARY.each do |character|
       
     end
-      
-    if word.include?('a') || word.include?('@')
-      word.gsub!('a', '(a|@)+')
-    end
-      
-    if word.include?('a') || word.include?('@')
-      word.gsub!('a', '(a|@)+')
-    end
-    
-    if word.include?('a') || word.include?('@')
-      word.gsub!('a', '(a|@)+')
-    end
-      
-    if word.include?('a') || word.include?('@')
-      word.gsub!('a', '(a|@)+')
    
     word.gsub!
     
