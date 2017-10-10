@@ -10,13 +10,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
+    title = params[:post][:title]
+    message = check_blacklist_words(get_message_param)
+    @post = Post.create(title: title, message: message)
     redirect_to root_path
   end
 
   def comment
     @post = Post.find(params[:post_id])
-    @post.children.create(title: @post.title, message: params[:post][:message])
+    message = check_blacklist_words(get_message_param)
+    @post.children.create(title: @post.title, message: message)
     redirect_to @post
   end
 
@@ -27,7 +30,8 @@ class PostsController < ApplicationController
 
   def reply
     @post = Post.find(params[:post_id])
-    @post.children.create(title: @post.title, message: params[:post][:message])
+    message = check_blacklist_words(get_message_param)
+    @post.children.create(title: @post.title, message: message)
     redirect_to @post.root
   end
 
@@ -36,4 +40,26 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :message)
   end
+  
+  def check_blacklist_words(message)
+      words = message.gsub(/\s+/m, ' ').strip.split(" ")
+      
+      words.each do |word|
+        if word.length > 1
+          ProfanityWord.all.each do |regex|
+            if Regexp.new(regex.regex, true).match(word)
+              message.gsub!(word, ''.rjust(word.length, 'X'))
+              break
+            end
+          end
+        end
+      end
+      message
+  end
+  
+  def get_message_param
+    params[:post][:message]
+  end
+  
+
 end
