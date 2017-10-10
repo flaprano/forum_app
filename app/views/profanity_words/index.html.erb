@@ -1,0 +1,11 @@
+<h1>Profanity Words List</h1><br />
+
+<ul>
+<% @profanity_words.each do |profanity_word| %>
+    <li><%= profanity_word.word  %></li>
+<% end %>
+</ul>
+
+<%= paginate @profanity_words %>
+
+<%= link_to 'Include word', new_profanity_word_path %>
