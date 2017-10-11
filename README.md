@@ -1,7 +1,9 @@
 Project developed using 
 - Ruby 2.4.2
 - Rails 5.1.4
-- 
+- Passenger Web app Server
+- MongoDB database on mLab
+
 Obs.: The focus of the project was the back-end. The front-end was not developed.
 
 Gems used on this project:
