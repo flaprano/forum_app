@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :profanity_word do
-    word 'MyString'
-    regex 'MyString'
+    word 'cama'
+    regex 'c(a|@)+m(a|@)+'
   end
 end

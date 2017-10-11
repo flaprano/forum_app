@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @post = Post.new
-    @posts = Post.roots.page(params[:page]).per(2)
+    @posts = Post.roots.page(params[:page]).per(10)
   end
 
   def show
@@ -11,14 +10,14 @@ class PostsController < ApplicationController
 
   def create
     title = params[:post][:title]
-    message = check_blacklist_words(get_message_param)
+    message = check_blacklist_words(message_param)
     @post = Post.create(title: title, message: message)
     redirect_to root_path
   end
 
   def comment
     @post = Post.find(params[:post_id])
-    message = check_blacklist_words(get_message_param)
+    message = check_blacklist_words(message_param)
     @post.children.create(title: @post.title, message: message)
     redirect_to @post
   end
@@ -30,15 +29,15 @@ class PostsController < ApplicationController
 
   def reply
     @post = Post.find(params[:post_id])
-    message = check_blacklist_words(get_message_param)
+    message = check_blacklist_words(message_param)
     @post.children.create(title: @post.title, message: message)
     redirect_to @post.root
   end
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :message)
+  def message_param
+    params[:post][:message]
   end
 
   def check_blacklist_words(message)
@@ -51,9 +50,5 @@ class PostsController < ApplicationController
       end
     end
     message
-  end
-
-  def get_message_param
-    params[:post][:message]
   end
 end

@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     post 'reply'
   end
   
-  resources :profanity_words, only: %i[index new create]
-
   get 'posts/:id/new_reply', to: 'posts#new_reply'
   post 'posts/:id/reply', to: 'posts#reply'
+
+  resources :profanity_words, only: %i[index create]
 end

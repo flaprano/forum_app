@@ -1,9 +1,9 @@
 module PostsHelper
   def create_topics
-    Post.destroy_all
-    create(:post)
-    create(:post)
-    create(:post)
+    delete_topics
+    11.times do
+      create(:post)
+    end
   end
 
   def delete_topics

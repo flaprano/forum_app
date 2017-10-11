@@ -1,6 +1,4 @@
-<h1>Add new word to Blacklist</h1>
-
-<%= form_for @profanity_word do |f| %>
+<%= form_for ProfanityWord.new do |f| %>
   <%= f.label :word %>:<br/>
   <%= f.text_field :word %><br/><br/>
 
