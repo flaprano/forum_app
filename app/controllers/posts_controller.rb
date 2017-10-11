@@ -40,26 +40,20 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :message)
   end
-  
+
   def check_blacklist_words(message)
-      words = message.gsub(/\s+/m, ' ').strip.split(" ")
-      
-      words.each do |word|
-        if word.length > 1
-          ProfanityWord.all.each do |regex|
-            if Regexp.new(regex.regex, true).match(word)
-              message.gsub!(word, ''.rjust(word.length, 'X'))
-              break
-            end
-          end
+    ProfanityWord.all.each do |profanity_word|
+      matches = message.to_enum(:scan, Regexp.new(profanity_word.regex, true)).map { Regexp.last_match }
+      unless matches.empty?
+        matches.each do |match|
+          message.gsub!(match[0], ''.rjust(match[0].length, 'X'))
         end
       end
-      message
+    end
+    message
   end
-  
+
   def get_message_param
     params[:post][:message]
   end
-  
-
 end
